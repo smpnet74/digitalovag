@@ -12,7 +12,15 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "base"
+  config.vm.box = "digitalocean"
+  config.vm.provider :digital_ocean do |provider, override|
+    override.ssh.private_key_path = '/root/id_rsa'
+    override.vm.box = 'digital_ocean'
+    provider.token = ''
+    provider.image = 'ubuntu-14-04-x64'
+    provider.region = 'nyc2'
+    provider.size = '512mb'
+  end
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
